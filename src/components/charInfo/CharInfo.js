@@ -1,4 +1,5 @@
 import { Component } from 'react/cjs/react.development';
+import PropTypes from 'prop-types'
 import MarvelService from '../../services/MarvelService';
 import Spinner from '../spinner/spinner';
 import ErrorMessage from '../errorMessage/errorMessage';
@@ -26,10 +27,7 @@ class CharInfo extends Component {
         }
     }
 
-    componentDidCatch(err, info) {
-        console.log(err, info);
-        this.setState({error:true});
-    }
+    
 
     updateChar = () => {
         const {charId} = this.props;
@@ -92,6 +90,8 @@ const View = ({char}) => {
 
     }
 
+    
+
     return (
         <>
             <div className="char__basics">
@@ -116,15 +116,6 @@ const View = ({char}) => {
                 {comics.length > 0 ? null : 'К сожалению, с этим персонажем нет комиксов'}
                 { 
                     comics.map((item, i) => {
-                        
-                        if (!i) {
-                            return (
-                               
-                                <li className="char__comics-item">
-                                    К сожалению, у данного персонажа нет своих комиксов
-                                </li>
-                            )
-                        }
 
                         if (i < 11) {
                             return (
@@ -141,4 +132,6 @@ const View = ({char}) => {
         </>
     )
 }
+
+
 export default CharInfo;
